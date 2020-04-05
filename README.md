@@ -86,7 +86,7 @@ Here's a walkthrough of implemented user stories:
 [The NightWalker App WireFrame]
 
 
-<img src="nightWalker.jpg" width=600>
+<img src="https://github.com/The-NightWalkers/NightWalker/blob/master/Wireframe.jpg" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 
