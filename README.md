@@ -29,7 +29,7 @@ The Nightwalker app is a security app that enables users to call 911 emergency l
 
 **Required Must-have Stories**
 
-* Signup and Login
+* Signup and Login [X]
 * Emergency calls to 911
 * GPS
 * Invite a friend as a Night Walker
@@ -47,8 +47,8 @@ The Nightwalker app is a security app that enables users to call 911 emergency l
 ### 2. Screen Archetypes
 
 * Login Screen
-   * Sign up for our services
-   * Login to account
+   * Sign up for our services [X]
+   * Login to account [X]
 * Home Screen
    * Bottom navigation for GPS and Social
    * Alert the authorities button
