@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         Password = findViewById(R.id.Password);
         Loginbutton = findViewById(R.id.Loginbutton);
 
+
         Loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Immanuela Wrote the next section
 
-   /* private void signupUser (final String username, final String password){
+    private void signupUser (final String username, final String password){
         ParseUser user = new ParseUser();
         user.setUsername(username);
         user.setPassword(password);
@@ -87,9 +88,6 @@ public class LoginActivity extends AppCompatActivity {
         // Invoke signUpInBackground
         user.signUpInBackground(new SignUpCallback() {
             @Override
-            public void done(com.parse.ParseException e) {
-
-            }
 
             public void done(ParseException e) {
                 if (e == null) {
@@ -102,5 +100,5 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-    }*/
+    }
 }
