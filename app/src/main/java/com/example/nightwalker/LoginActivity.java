@@ -1,15 +1,18 @@
 package com.example.nightwalker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.parse.LogInCallback;
+import com.parse.ParseException;
 import com.parse.ParseUser;
 
 
@@ -42,10 +45,24 @@ public class LoginActivity extends AppCompatActivity {
     }
 
         private void loginUser(String username, String password){
+            // We should go to mainActivity once user is signed in. Sama
             Log.i(TAG, "Attempting to login user" + username);
-            // TO DO: We should go to mainActivity once user is signed in. Sama
+            ParseUser.logInInBackground(username, password, new LogInCallback() {
+                        @Override
+                        public void done(ParseUser user, ParseException e) {
+                            if (e != null) {
+                                Log.e(TAG, "There are issues with login", e);
+                                Toast.makeText(LoginActivity.this, "There are issues with login!", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            goMainActivity();
+                            Toast.makeText(LoginActivity.this, "Login success!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }
-
-
+        // goMainActivity takes us from LoginActivity to MainActivity if login is successful. Sama
+        private void goMainActivity(){
+            Intent i = new Intent (this, MainActivity.class);
+            startActivity(i);
     }
 }
