@@ -31,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         // if a user is already signed in, goes directly to mainActivity. Sama
