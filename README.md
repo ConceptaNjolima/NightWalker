@@ -50,14 +50,14 @@ The Nightwalker app is a security app that enables users to call 911 emergency l
    -  [X] Sign up for our services 
    -  [X] Login to account 
 * Home Screen
-   * Bottom navigation for GPS and Social
-   * Alert the authorities button
+   -  [ ]  Bottom navigation for GPS and Social
+   -  [ ]  Alert the authorities button
 * Track my location / Social Screen
-    * Shows a map
-    * Has function to send location to friends
-    * Has a track location function where friends can track your progress to the destination
-    * Invite friends
-    * Message friends for escorts across campus
+   -  [ ]  Shows a map
+   -  [ ]  Has function to send location to friends
+   -  [ ]  Has a track location function where friends can track your progress to the destination
+   -  [ ]  Invite friends
+   -  [ ]  Message friends for escorts across campus
 
 ### 3. Navigation
 
