@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         Username = findViewById(R.id.Username);
         Password = findViewById(R.id.Password);
         Loginbutton = findViewById(R.id.Loginbutton);
+        Sign_up = findViewById(R.id.Sign_up);
 
 
         Loginbutton.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +51,15 @@ public class LoginActivity extends AppCompatActivity {
                 String username = Username.getText().toString();
                 String password = Password.getText().toString();
                 loginUser(username, password);
+            }
+        });
+        Sign_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "Sign Up button");
+                String username = Username.getText().toString();
+                String password = Password.getText().toString();
+                signupUser(username, password);
             }
         });
     }
