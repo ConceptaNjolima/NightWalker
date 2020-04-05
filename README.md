@@ -42,7 +42,14 @@ The Nightwalker app is a security app that enables users to call 911 emergency l
 * Share location with NighWalker
 * Track my location
 * Recorded voice instead of calling 911 to send location
-* ...
+
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='https://github.com/The-NightWalkers/NightWalker/blob/master/Login.gif' style="vertical-align:middle" width="300" title='Login'/>
+
+<img src='https://github.com/The-NightWalkers/NightWalker/blob/master/Signup.gif' style="vertical-align:middle" width="300" title='Sign Up'/>
 
 ### 2. Screen Archetypes
 
