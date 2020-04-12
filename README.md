@@ -29,11 +29,11 @@ The Nightwalker app is a security app that enables users to call 911 emergency l
 
 **Required Must-have Stories**
 
-* Signup and Login
-* Emergency calls to 911
-* GPS
-* Invite a friend as a Night Walker
-* 
+-  [X] Signup and Login 
+-  [ ] Emergency calls to 911
+-  [ ] GPS
+-  [ ] Invite a friend as a Night Walker
+ 
 
 **Optional Nice-to-have Stories**
 
@@ -42,22 +42,29 @@ The Nightwalker app is a security app that enables users to call 911 emergency l
 * Share location with NighWalker
 * Track my location
 * Recorded voice instead of calling 911 to send location
-* ...
+
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='https://github.com/The-NightWalkers/NightWalker/blob/master/Login.gif' style="vertical-align:middle" width="300" title='Login'/>
+
+<img src='https://github.com/The-NightWalkers/NightWalker/blob/master/Signup.gif' style="vertical-align:middle" width="300" title='Sign Up'/>
 
 ### 2. Screen Archetypes
 
 * Login Screen
-   * Sign up for our services
-   * Login to account
+   -  [X] Sign up for our services 
+   -  [X] Login to account 
 * Home Screen
-   * Bottom navigation for GPS and Social
-   * Alert the authorities button
+   -  [ ]  Bottom navigation for GPS and Social
+   -  [ ]  Alert the authorities button
 * Track my location / Social Screen
-    * Shows a map
-    * Has function to send location to friends
-    * Has a track location function where friends can track your progress to the destination
-    * Invite friends
-    * Message friends for escorts across campus
+   -  [ ]  Shows a map
+   -  [ ]  Has function to send location to friends
+   -  [ ]  Has a track location function where friends can track your progress to the destination
+   -  [ ]  Invite friends
+   -  [ ]  Message friends for escorts across campus
 
 ### 3. Navigation
 
@@ -79,7 +86,7 @@ The Nightwalker app is a security app that enables users to call 911 emergency l
 [The NightWalker App WireFrame]
 
 
-<img src="nightWalker.jpg" width=600>
+<img src="https://github.com/The-NightWalkers/NightWalker/blob/master/Wireframe.jpg" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 
