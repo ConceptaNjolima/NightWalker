@@ -13,14 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LocationActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
-    private TextView description;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_social);
+        setContentView(R.layout.activity_location);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        description = (TextView) findViewById(R.id.textView);
-        description.setText("This is Location Activity");
+        TextView location = (TextView) findViewById(R.id.location_text);
+        location.setText("This is Location Activity");
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -31,15 +30,13 @@ public class LocationActivity extends AppCompatActivity {
                         startActivity(a);
                         break;
                     case R.id.action_location:
-                        //Intent b = new Intent(LocationActivity.this,LocationActivity.class);
-                        //startActivity(b);
                         break;
                     case R.id.action_social:
                          Intent c = new Intent(LocationActivity.this,SocialActivity.class);
                           startActivity(c);
                         break;
                 }
-                return false;
+                return true;
             }
         });
     }

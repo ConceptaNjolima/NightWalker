@@ -18,8 +18,8 @@ public class SocialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        TextView words = (TextView) findViewById(R.id.textView2);
-        words.setText("This is social activity.");
+        TextView social = (TextView) findViewById(R.id.social_text);
+        social.setText("This is social activity.");
 
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -35,11 +35,9 @@ public class SocialActivity extends AppCompatActivity {
                         startActivity(b);
                         break;
                     case R.id.action_social:
-                        // Intent c = new Intent(SocialActivity.this,SocialActivity.class);
-                        //  startActivity(c);
                         break;
                 }
-                return false;
+                return true;
             }
         });
     }
