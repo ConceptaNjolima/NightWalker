@@ -45,14 +45,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case R.id.action_home:
+                   /* case R.id.action_home:
                         //Intent a = new Intent(MainActivity.this,MainActivity.class);
                        // startActivity(a);
                         break;
-                    case R.id.action_location:
+                   /* case R.id.action_location:
                         Intent b = new Intent(MainActivity.this,LocationActivity.class);
                         startActivity(b);
-                        break;
+                        break;*/
                     case R.id.action_social:
                         Intent c = new Intent(MainActivity.this,SocialActivity.class);
                         startActivity(c);
