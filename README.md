@@ -30,7 +30,7 @@ The Nightwalker app is a security app that enables users to call 911 emergency l
 **Required Must-have Stories**
 
 -  [X] Signup and Login 
--  [ ] Emergency calls to 911
+-  [X] Emergency calls to 911
 -  [ ] GPS
 -  [ ] Invite a friend as a Night Walker
  
@@ -51,14 +51,19 @@ Here's a walkthrough of implemented user stories:
 
 <img src='https://github.com/The-NightWalkers/NightWalker/blob/master/Signup.gif' style="vertical-align:middle" width="300" title='Sign Up'/>
 
+Here's a walkthough for week 11's user story implementation
+
+<img src='https://github.com/The-NightWalkers/NightWalker/blob/master/Walkthrough_Nightwalker.gif' style="vertical-align:middle" width="300" title='Sign Up'/>
+
+
 ### 2. Screen Archetypes
 
 * Login Screen
    -  [X] Sign up for our services 
    -  [X] Login to account 
 * Home Screen
-   -  [ ]  Bottom navigation for GPS and Social
-   -  [ ]  Alert the authorities button
+   -  [X]  Bottom navigation for GPS and Social
+   -  [X]  Alert the authorities button
 * Track my location / Social Screen
    -  [ ]  Shows a map
    -  [ ]  Has function to send location to friends
