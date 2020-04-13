@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+    android:orientation="vertical" 
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
@@ -11,9 +13,18 @@
         android:text="We are NightWalkers"
         android:textSize="50dp" />
 
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/menu_bottom_navigation" />
+
     <ImageView
         android:id="@+id/image_call"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_phone_black_24dp" />
+
 </LinearLayout>
