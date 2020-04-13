@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,18 +25,44 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     private static final int REQUEST_CALL=1;
     public static final String CALL_NUMBER="8599791217";
+    private BottomNavigationView bottomNavigationView;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ImageView imageCall=findViewById(R.id.image_call);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         imageCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 makePhoneCall();
             }
         });
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.action_home:
+                        //Intent a = new Intent(MainActivity.this,MainActivity.class);
+                       // startActivity(a);
+                        break;
+                    case R.id.action_location:
+                        Intent b = new Intent(MainActivity.this,LocationActivity.class);
+                        startActivity(b);
+                        break;
+                    case R.id.action_social:
+                        Intent c = new Intent(MainActivity.this,SocialActivity.class);
+                        startActivity(c);
+                        break;
+                }
+                return true;
+            }
+
+        });
+
     }
 
     private void makePhoneCall() {
@@ -58,4 +87,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 }
