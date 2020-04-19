@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                         toast.show();
                         break;
                    case R.id.action_location:
-                        Intent b = new Intent(MainActivity.this,LocationActivity.class);
+                        Intent b = new Intent(MainActivity.this, LocationActivity.class);
                         startActivity(b);
                          Toast toast_location = Toast.makeText(getApplicationContext(),"location",Toast. LENGTH_SHORT);
                         toast_location.show();
