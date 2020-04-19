@@ -71,7 +71,7 @@ Here's a walkthough for week 11's user story implementation
    -  [X]  Alert the authorities button
 * Track my location / Social Screen
    -  [X]  Implements Google Map and uses Google Map API
-   -  [X]  Showes your current location on the map
+   -  [X]  Shows your current location on the map
    -  [ ]  Has a track location function where friends can track your progress to the destination
    -  [ ]  Invite friends
 
