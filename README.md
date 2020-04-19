@@ -49,16 +49,15 @@ Here's a walkthrough of Unit 12 user story implementation
 
 <img src='https://github.com/The-NightWalkers/NightWalker/blob/Sama-GPS/GPS%20Location.gif' style="vertical-align:middle" width="300" title='Login'/>
 
+Here's a walkthough for Unit 11 user story implementation
+
+<img src='https://github.com/The-NightWalkers/NightWalker/blob/master/Walkthrough_Nightwalker.gif' style="vertical-align:middle" width="300" title='Sign Up'/>
 
 Here's a walkthrough of implemented user stories:
 
 <img src='https://github.com/The-NightWalkers/NightWalker/blob/master/Login.gif' style="vertical-align:middle" width="300" title='Login'/>
 
 <img src='https://github.com/The-NightWalkers/NightWalker/blob/master/Signup.gif' style="vertical-align:middle" width="300" title='Sign Up'/>
-
-Here's a walkthough for week 11's user story implementation
-
-<img src='https://github.com/The-NightWalkers/NightWalker/blob/master/Walkthrough_Nightwalker.gif' style="vertical-align:middle" width="300" title='Sign Up'/>
 
 
 ### 2. Screen Archetypes
