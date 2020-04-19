@@ -10,13 +10,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                         toast.show();
                         break;
                    case R.id.action_location:
-                        Intent b = new Intent(MainActivity.this,LocationActivity.class);
+                        Intent b = new Intent(MainActivity.this,MapsActivity.class);
                         startActivity(b);
                          Toast toast_location = Toast.makeText(getApplicationContext(),"location",Toast. LENGTH_SHORT);
                         toast_location.show();
