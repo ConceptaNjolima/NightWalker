@@ -31,7 +31,7 @@ The Nightwalker app is a security app that enables users to call 911 emergency l
 
 -  [X] Signup and Login 
 -  [X] Emergency calls to 911
--  [ ] GPS
+-  [X] Track Location
 -  [ ] Invite a friend as a Night Walker
  
 
@@ -44,6 +44,11 @@ The Nightwalker app is a security app that enables users to call 911 emergency l
 * Recorded voice instead of calling 911 to send location
 
 ## Video Walkthrough
+
+Here's a walkthrough of Unit 12 user story implementation
+
+<img src='https://github.com/The-NightWalkers/NightWalker/blob/Sama-GPS/GPS%20Location.gif' style="vertical-align:middle" width="300" title='Login'/>
+
 
 Here's a walkthrough of implemented user stories:
 
@@ -65,11 +70,10 @@ Here's a walkthough for week 11's user story implementation
    -  [X]  Bottom navigation for GPS and Social
    -  [X]  Alert the authorities button
 * Track my location / Social Screen
-   -  [ ]  Shows a map
-   -  [ ]  Has function to send location to friends
+   -  [X]  Implements Google Map and uses Google Map API
+   -  [X]  Showes your current location on the map
    -  [ ]  Has a track location function where friends can track your progress to the destination
    -  [ ]  Invite friends
-   -  [ ]  Message friends for escorts across campus
 
 ### 3. Navigation
 
