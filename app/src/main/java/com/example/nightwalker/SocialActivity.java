@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SocialActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
@@ -31,7 +31,7 @@ public class SocialActivity extends AppCompatActivity {
                         startActivity(a);
                         break;
                     case R.id.action_location:
-                        Intent b = new Intent(SocialActivity.this, LocationActivity.class);
+                        Intent b = new Intent(SocialActivity.this, MapsActivity.class);
                         startActivity(b);
                         break;
                     case R.id.action_social:
