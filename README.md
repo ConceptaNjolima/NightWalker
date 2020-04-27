@@ -45,6 +45,7 @@ The Nightwalker app is a security app that enables users to call 911 emergency l
 
 ## Video Walkthrough
 This is the walkthrough of Unit 14 where a location is sent to the Police for tracking
+
 <img src='https://github.com/The-NightWalkers/NightWalker/blob/master/nightWalker.gif' style="vertical-align:middle" width="300" title='Sending Location to Police via SMS'/>
 
 Here's a walkthrough of Unit 12 user story implementation
