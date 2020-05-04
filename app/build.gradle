@@ -32,5 +32,7 @@ dependencies {
     implementation 'com.github.parse-community.Parse-SDK-Android:parse:1.20.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.4.1'
 
+    //Adding the following dependencies, Concepta
+    implementation 'com.github.nkzawa:socket.io-client:0.3.0'
 
 }
