@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                         toast_location.show();
                         break;
                     case R.id.action_social:
-                        Intent c = new Intent(MainActivity.this,SocialActivity.class);
+                        Intent c = new Intent(MainActivity.this,AddUserActivity.class);
                         startActivity(c);
                         Toast toast_social = Toast.makeText(getApplicationContext(),"social",Toast. LENGTH_SHORT);
                         toast_social.show();
