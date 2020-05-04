@@ -1,0 +1,8 @@
+<resources>
+    <!--
+    Added the google API. Sama
+    -->
+    <string name="google_maps_api" templateMergeStrategy="preserve" translatable="false">
+        AIzaSyCgWvm63PZ6Tq6HF2wS0GH_0Aw1_c5sFQk
+    </string>
+</resources>
