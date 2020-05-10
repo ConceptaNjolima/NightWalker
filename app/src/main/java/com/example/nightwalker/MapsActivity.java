@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -32,16 +33,23 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.textfield.TextInputEditText;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private static final String TAG = "MAP" ;
+    private static final String TAG = "MapActivity" ;
     Location currentlocation;
     FusedLocationProviderClient fusedLocationProviderClient;
     private static final int REQUEST_CODE = 101;
     private static final int SEND_SMS_REQUEST_CODE = 1;
     private BottomNavigationView bottomNavigationView;
     private Button ShareLtn;
+    private Button InviteNW;
+    private EditText UserNW;
 
 
 
@@ -55,7 +63,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         ShareLtn=findViewById(R.id.btnShareLtn);
-
+        InviteNW = findViewById (R.id.btnInviteNW);
+        UserNW = findViewById(R.id.etuserNW);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         fetchLastLocation();
@@ -84,12 +93,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 onSend(v);
-
             }
-
-
-
         });
+        // button to share location to parse server
+        InviteNW.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //METHOD THAT TELLS PARSE TO RECORD LAT AND LONG
+                String userNW = UserNW.getText().toString();
+                if (userNW.isEmpty()){
+                    Toast.makeText(MapsActivity.this,"You must input a key", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                recordLocation (currentlocation.getLatitude(), currentlocation.getLongitude(),  userNW);
+                Toast.makeText(MapsActivity.this, "Your Key has been input!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -110,6 +131,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
+
+    private void recordLocation(double latitude, double longitude, String trackerKey) {
+        PostLocation postLocation = new PostLocation();
+        postLocation.setLatitude(latitude);
+        postLocation.setLongitude(longitude);
+        postLocation.setTrackerKey (trackerKey);
+        postLocation.setUser(ParseUser.getCurrentUser());
+        postLocation.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Error while saving location data", e);
+                    Toast.makeText(MapsActivity.this, "Error while saving location data", Toast.LENGTH_SHORT).show();
+                }
+                Log.i(TAG, "Post saved properly");
+                UserNW.setText("");
+            }
+        });
+    }
+
     public void onSend(View v){
         String PhoneNumber="8599791217";
         String message= currentlocation.getLatitude()+ ""+ currentlocation.getLongitude();
@@ -169,4 +210,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 break;
         }
     }
+
+
 }
