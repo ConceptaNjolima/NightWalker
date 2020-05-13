@@ -1,8 +1,11 @@
 package com.example.nightwalker;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,16 +13,25 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+
+import java.util.List;
 
 public class SocialActivity extends AppCompatActivity {
+    private static final String TAG = "SocialActivity";
     private BottomNavigationView bottomNavigationView;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setItemIconTintList(null);
         TextView social = (TextView) findViewById(R.id.social_text);
         social.setText("This is social activity.");
+
+        queryPosts();
 
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -38,6 +50,23 @@ public class SocialActivity extends AppCompatActivity {
                         break;
                 }
                 return true;
+            }
+        });
+    }
+
+    private void queryPosts() {
+        ParseQuery<PostLocation> query =  ParseQuery.getQuery(PostLocation.class);
+        query.include(PostLocation.KEY_USERNAME);
+        query.findInBackground(new FindCallback<PostLocation>() {
+            @Override
+            public void done(List<PostLocation> postLocations, ParseException e) {
+                if (e!= null){
+                    Log.i(TAG, "Issue with getting locations");
+                    return;
+                }
+                for (PostLocation postLocation : postLocations){
+                    Log.e(TAG, "User: "+ postLocation.getUser()+" Latitude " +postLocation.getLatitude() + " Longitude "+ postLocation.getLongitude(),e);
+                }
             }
         });
     }
