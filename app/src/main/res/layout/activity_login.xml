@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="username"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColor="#25126E" />
 
 
     <EditText
@@ -17,19 +18,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textColor="#25126E" />
 
     <Button
         android:id="@+id/Loginbutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:layout_marginTop="20dp"
+        android:background="#25126E"
+        android:text="Login"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/Sign_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign Up" />
+        android:layout_marginTop="8dp"
+        android:background="#25126E"
+        android:text="Sign Up"
+        android:textColor="#FFFFFF"
+        android:textSize="24dp" />
 
 
 </LinearLayout>
