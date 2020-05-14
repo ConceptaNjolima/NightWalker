@@ -8,22 +8,16 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/Testing"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="The NightWalkers"
-        android:textSize="50dp" />
-
     <ImageView
         android:id="@+id/image_call"
-        android:layout_width="match_parent"
+        android:layout_width="356dp"
+        android:layout_height="329dp"
         android:layout_above="@+id/bottom_navigation"
         android:layout_below="@+id/Testing"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="134dp"
-        app:srcCompat="@drawable/ic_phone_black_24dp"
-        android:layout_height="300px" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="217dp"
+        android:layout_marginBottom="4dp"
+        app:srcCompat="@drawable/ic_local_phone_black_24dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -33,23 +27,29 @@
         app:menu="@menu/menu_bottom_navigation" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView2"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="177dp"
-        android:layout_marginBottom="3dp"
-        android:text="Security Tip" />
-
-    <TextView
         android:id="@+id/textView2"
-        android:layout_width="700px"
-        android:layout_height="100px"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
         android:layout_above="@+id/bottom_navigation"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="63dp"
-        android:text="Always carry a charged cell phone with you at all times" />
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="449dp"
+        android:background="#BC25126E"
+        android:text="Security Tip:  Always carry a charged cell phone with you at all times"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="298dp"
+        android:layout_height="72dp"
+        android:layout_alignEnd="@+id/image_call"
+        android:layout_alignBottom="@+id/image_call"
+        android:layout_marginEnd="59dp"
+        android:layout_marginBottom="330dp"
+        android:text="Call 911"
+        android:textColor="#25126E"
+        android:textSize="60dp" />
 
 </RelativeLayout>
