@@ -1,30 +1,36 @@
 package com.example.nightwalker;
 
+
 import android.annotation.SuppressLint;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.github.nkzawa.emitter.Emitter;
+
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
+import com.github.nkzawa.emitter.Emitter;
+import com.parse.ParseUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,7 +39,7 @@ public class SocialActivity extends AppCompatActivity {
     private EditText textField;
     private ImageButton sendButton;
 
-    public static final String TAG  = "SocialActivity";
+    public static final String TAG = "SocialActivity";
     public static String uniqueId;
 
     private String Username;
@@ -42,25 +48,27 @@ public class SocialActivity extends AppCompatActivity {
 
     private ListView messageListView;
     private MessageAdapter messageAdapter;
-    
+
     private Thread thread2;
     private boolean startTyping = false;
     private int time = 2;
 
     private Socket mSocket;
+
     {
         try {
             mSocket = IO.socket("https://sheltered-shelf-74163.herokuapp.com/");
-        } catch (URISyntaxException e) {}
+        } catch (URISyntaxException e) {
+        }
     }
 
     @SuppressLint("HandlerLeak")
-    Handler handler2=new Handler(){
+    Handler handler2 = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             Log.i(TAG, "handleMessage: typing stopped " + startTyping);
-            if(time == 0){
+            if (time == 0) {
                 setTitle("SocketIO");
                 Log.i(TAG, "handleMessage: typing stopped time is " + time);
                 startTyping = false;
@@ -73,20 +81,20 @@ public class SocialActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_social);
 
-        Username = getIntent().getStringExtra("username");
+        Username = ParseUser.getCurrentUser().getUsername();
 
         uniqueId = UUID.randomUUID().toString();
         Log.i(TAG, "onCreate: " + uniqueId);
 
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             hasConnection = savedInstanceState.getBoolean("hasConnection");
         }
 
-        if(hasConnection){
+        if (hasConnection) {
 
-        }else {
+        } else {
             mSocket.connect();
             mSocket.on("connect user", onNewUser);
             mSocket.on("chat message", onNewMessage);
@@ -117,7 +125,6 @@ public class SocialActivity extends AppCompatActivity {
 
         onTypeButtonEnable();
     }
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -267,7 +274,7 @@ public class SocialActivity extends AppCompatActivity {
                             }else {
                                 time = 2;
                             }
-                            
+
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

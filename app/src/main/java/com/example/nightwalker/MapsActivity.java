@@ -102,7 +102,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     case R.id.action_location:
                         break;
                     case R.id.action_social:
-                        Intent c = new Intent(MapsActivity.this,AddUserActivity.class);
+                        Intent c = new Intent(MapsActivity.this,SocialActivity.class);
                         startActivity(c);
                         break;
                 }
