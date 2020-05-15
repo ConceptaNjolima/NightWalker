@@ -38,5 +38,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${appCompatVersion}"
     implementation "com.google.android.material:material:${designSupportVersion}"
 
+    //Adding following dependencies, Concepta
+    implementation 'com.github.nkzawa:socket.io-client:0.3.0'
 
 }
