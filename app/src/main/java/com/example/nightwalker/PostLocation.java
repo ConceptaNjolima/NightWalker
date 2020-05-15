@@ -4,9 +4,9 @@ import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-@ParseClassName("location")
+@ParseClassName("PostLocation")
 public class PostLocation extends ParseObject {
-    public static final String KEY_USER = "user";
+    public static final String KEY_USERNAME = "username";
     public static final String KEY_LATITUDE = "latitude";
     public static final String KEY_LONGITUDE = "longitude";
     public static final String KEY_TRACKERKEY = "trackerKey";
@@ -25,11 +25,11 @@ public class PostLocation extends ParseObject {
     }
 
 
-    public void setUser(ParseUser currentUser) {
-        put(KEY_USER, currentUser);
+   public void setUser(ParseUser currentUser) {
+        put(KEY_USERNAME, currentUser);
     }
     public String getUser(){
-        return getString(KEY_USER);
+        return getString(KEY_USERNAME);
     }
 
     public void setTrackerKey(String trackerKey) {

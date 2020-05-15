@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ImageView imageCall=findViewById(R.id.image_call);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setItemIconTintList(null);
         imageCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

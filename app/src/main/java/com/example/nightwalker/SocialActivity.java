@@ -31,7 +31,6 @@ public class SocialActivity extends AppCompatActivity {
         TextView social = (TextView) findViewById(R.id.social_text);
         social.setText("This is social activity.");
 
-        queryPosts();
 
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -50,23 +49,6 @@ public class SocialActivity extends AppCompatActivity {
                         break;
                 }
                 return true;
-            }
-        });
-    }
-
-    private void queryPosts() {
-        ParseQuery<PostLocation> query =  ParseQuery.getQuery(PostLocation.class);
-        query.include(PostLocation.KEY_USERNAME);
-        query.findInBackground(new FindCallback<PostLocation>() {
-            @Override
-            public void done(List<PostLocation> postLocations, ParseException e) {
-                if (e!= null){
-                    Log.i(TAG, "Issue with getting locations");
-                    return;
-                }
-                for (PostLocation postLocation : postLocations){
-                    Log.e(TAG, "User: "+ postLocation.getUser()+" Latitude " +postLocation.getLatitude() + " Longitude "+ postLocation.getLongitude(),e);
-                }
             }
         });
     }

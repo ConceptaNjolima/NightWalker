@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // if a user is already signed in, goes directly to mainActivity. Sama
+         //if a user is already signed in, goes directly to mainActivity. Sama
         if (ParseUser.getCurrentUser() != null){
             goMainActivity();
         }
