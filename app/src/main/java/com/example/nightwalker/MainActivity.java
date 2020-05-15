@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent b = new Intent(MainActivity.this,SocialActivity.class);
                         startActivity(b);
                         break;
-                    case R.id.action_NightWak:
+                    case R.id.action_NightWalk:
                         Intent c = new Intent(MainActivity.this,NightWalkActivity.class);
                         startActivity(c);
                         break;

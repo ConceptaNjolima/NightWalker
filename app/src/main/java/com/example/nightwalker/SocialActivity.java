@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +22,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
-import com.github.nkzawa.emitter.Emitter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.ParseUser;
 
@@ -33,7 +31,6 @@ import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -145,7 +142,7 @@ public class SocialActivity extends AppCompatActivity {
                         break;
                     case R.id.action_social:
                         break;
-                    case R.id.action_NightWak:
+                    case R.id.action_NightWalk:
                         Intent c = new Intent(SocialActivity.this,NightWalkActivity.class);
                         startActivity(c);
                         break;
