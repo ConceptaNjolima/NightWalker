@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -15,10 +16,22 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.livequery.ParseLiveQueryClient;
+import com.parse.livequery.SubscriptionHandling;
+
+import java.util.List;
+
+
 public class NightWalkActivity extends FragmentActivity implements OnMapReadyCallback {
+    private static final String TAG = "NightWalkActivity";
 
     private GoogleMap mMap;
     private BottomNavigationView bottomNavigationView;
+    ParseQuery<PostLocation> query;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +79,27 @@ public class NightWalkActivity extends FragmentActivity implements OnMapReadyCal
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+//    private void queryPosts() {
+//        //create a coniditonal so that this person can only access locations with that key
+//        query =  ParseQuery.getQuery(PostLocation.class);
+//        query.include(PostLocation.KEY_USERNAME);
+//        query.findInBackground(new FindCallback<PostLocation>() {
+//            if (ParseUser.getCurrentUser() == List<PostLocation.getTrackerKey()>)
+//            @Override
+//            public void done(List<PostLocation> postLocations, ParseException e) {
+//                if (e!= null){
+//                    Log.i(TAG, "Issue with getting locations");
+//                    return;
+//                }
+//                for (PostLocation postLocation : postLocations){
+//                    Log.e(TAG, "User: "+ postLocation.getUser()+" Latitude " +postLocation.getLatitude() + " Longitude "+ postLocation.getLongitude(),e);
+//                }
+//            }
+//        });
+//    }
+
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -75,4 +109,6 @@ public class NightWalkActivity extends FragmentActivity implements OnMapReadyCal
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
+
+
 }
