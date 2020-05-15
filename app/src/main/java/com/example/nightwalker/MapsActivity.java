@@ -50,6 +50,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Button ShareLtn;
     private Button InviteNW;
     private EditText UserNW;
+    private double destination_longitude, destination_latitude;
+    private  PostLocation postLocation;
+    public String userNW;
+
 
 
 
@@ -68,6 +72,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         fetchLastLocation();
+
+        postLocation = new PostLocation();
+
+
 /*
         ContentResolver resolver =getContentResolver();
         Cursor cursor= resolver.query(ContactsContract.Contacts.CONTENT_URI,null,
@@ -100,13 +108,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v){
                 //METHOD THAT TELLS PARSE TO RECORD LAT AND LONG
-                String userNW = UserNW.getText().toString();
+                userNW = UserNW.getText().toString();
                 if (userNW.isEmpty()){
                     Toast.makeText(MapsActivity.this,"You must input a key", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                recordLocation (currentlocation.getLatitude(), currentlocation.getLongitude(),  userNW);
-                Toast.makeText(MapsActivity.this, "Your Key has been input!", Toast.LENGTH_SHORT).show();
+                LocationThread thread = new LocationThread(userNW);
+                thread.start();
+
+
             }
         });
 
@@ -131,26 +141,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
-
-    private void recordLocation(double latitude, double longitude, String trackerKey) {
-        PostLocation postLocation = new PostLocation();
-        postLocation.setLatitude(latitude);
-        postLocation.setLongitude(longitude);
-        postLocation.setTrackerKey (trackerKey);
-        postLocation.setUser(ParseUser.getCurrentUser());
-        postLocation.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, "Error while saving location data", e);
-                    Toast.makeText(MapsActivity.this, "Error while saving location data", Toast.LENGTH_SHORT).show();
-                }
-                Log.i(TAG, "Post saved properly");
-                UserNW.setText("");
-            }
-        });
-    }
-
     public void onSend(View v){
         String PhoneNumber="8599791217";
         String message= currentlocation.getLatitude()+ ""+ currentlocation.getLongitude();
@@ -165,6 +155,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Toast.makeText(this, "Failed to send message", Toast.LENGTH_SHORT).show();
         }
     }
+
     private void fetchLastLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
@@ -188,7 +179,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
@@ -211,5 +201,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-
+class LocationThread extends Thread{
+        /**This class makes saving location run in the background. It keeps updating the parse server with the latest location. It uses threads to run in the background.**/
+        int i = 0;
+        String userNw;
+        LocationThread(String userNw){
+            this.userNw = userNw;
+        }
+        public void run(){
+            postLocation.setTrackerKey (userNw);
+            postLocation.setUser(ParseUser.getCurrentUser());
+            while (currentlocation.getLatitude() != destination_latitude || currentlocation.getLongitude() != destination_longitude){
+                fetchLastLocation();
+                postLocation.setLatitude(currentlocation.getLatitude());
+                postLocation.setLongitude(currentlocation.getLongitude());
+                postLocation.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e != null) {
+                            Log.e(TAG, "Error while saving location data", e);
+                            Toast.makeText(MapsActivity.this, "Error while saving location data", Toast.LENGTH_SHORT).show();
+                        }
+                        //Log.i(TAG, "Location saved properly to parse server");
+                        //Toast.makeText(MapsActivity.this, "Location Saved Properly to Parse Server", Toast.LENGTH_SHORT).show();
+                        UserNW.setText("");
+                    }
+                });
+                Log.i(TAG, "LocationThread: " +  i++ );
+                Log.i(TAG, " run: Latitude"+ currentlocation.getLatitude()+"longitude"+currentlocation.getLongitude());
+                try {
+                    Thread.sleep(3000);
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                }
+        }}
 }
+
