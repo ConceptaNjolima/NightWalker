@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CALL=1;
     public static final String CALL_NUMBER="8599791217";
     private BottomNavigationView bottomNavigationView;
+    private Button btnLogout;
 
 
     @Override
@@ -35,11 +38,23 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageCall=findViewById(R.id.image_call);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setItemIconTintList(null);
+        btnLogout = findViewById(R.id.btnLogout);
         imageCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 makePhoneCall();
             }
+        });
+
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseUser.logOut();
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                goLogoutActivity();
+            }
+
         });
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -94,5 +109,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    private void goLogoutActivity() {
+        Intent i = new Intent(MainActivity.this,LoginActivity.class);
+        startActivity(i);
+    }
+
 
 }

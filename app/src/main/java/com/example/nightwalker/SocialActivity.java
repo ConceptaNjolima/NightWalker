@@ -12,17 +12,15 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-
+import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.github.nkzawa.emitter.Emitter;
@@ -43,7 +41,6 @@ public class SocialActivity extends AppCompatActivity {
 
     private EditText textField;
     private ImageButton sendButton;
-
     private BottomNavigationView bottomNavigationView;
 
     public static final String TAG = "SocialActivity";
@@ -90,7 +87,7 @@ public class SocialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-//       bottomNavigationView.setItemIconTintList(null);
+        bottomNavigationView.setItemIconTintList(null);
 
         Username = ParseUser.getCurrentUser().getUsername();
 
