@@ -36,6 +36,9 @@
         <activity
             android:name=".SocialActivity"
             android:label="Social" />
+        <activity
+            android:name=".NightWalkActivity"
+            android:label="NightWalk" />
     </application>
 
 </manifest>
