@@ -223,6 +223,7 @@ class LocationThread extends Thread{
                         //Log.i(TAG, "Location saved properly to parse server");
                         //Toast.makeText(MapsActivity.this, "Location Saved Properly to Parse Server", Toast.LENGTH_SHORT).show();
                         UserNW.setText("");
+                        UserNW.setText("Location Being Shared with "+ postLocation.getTrackerKey());
                     }
                 });
                 Log.i(TAG, "LocationThread: " +  i++ );
