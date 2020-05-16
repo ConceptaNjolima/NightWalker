@@ -46,13 +46,13 @@
 
     <Button
         android:id="@+id/btnLogout"
-        android:layout_width="367dp"
-        android:layout_height="30dp"
+        android:layout_width="159dp"
+        android:layout_height="wrap_content"
         android:layout_alignTop="@+id/bottom_navigation"
         android:layout_alignEnd="@+id/image_call"
 
-        android:layout_marginTop="-677dp"
-        android:layout_marginEnd="-40dp"
+        android:layout_marginTop="-615dp"
+        android:layout_marginEnd="-44dp"
 
         android:background="#25126E"
         android:text="logout"
