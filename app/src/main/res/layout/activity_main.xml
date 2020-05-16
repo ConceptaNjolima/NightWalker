@@ -26,6 +26,7 @@
         android:layout_alignParentBottom="true"
         app:menu="@menu/menu_bottom_navigation" />
 
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="298dp"
