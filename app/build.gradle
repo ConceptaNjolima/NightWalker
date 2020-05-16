@@ -38,6 +38,9 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${appCompatVersion}"
     implementation "com.google.android.material:material:${designSupportVersion}"
 
+    //For Live Query. Imma
+    implementation 'com.github.parse-community:ParseLiveQuery-Android:1.1.0'
+
     //Adding following dependencies, Concepta
     implementation 'com.github.nkzawa:socket.io-client:0.3.0'
     implementation 'androidx.navigation:navigation-fragment:2.2.2'
