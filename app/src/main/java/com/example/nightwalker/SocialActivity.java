@@ -3,9 +3,11 @@ package com.example.nightwalker;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -15,7 +17,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,17 +24,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
-import com.github.nkzawa.emitter.Emitter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.ParseUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -131,6 +129,16 @@ public class SocialActivity extends AppCompatActivity {
 
         onTypeButtonEnable();
 
+        bottomNavigationView.setItemIconTintList(null);
+        int[] colors = new int[] {
+                Color.BLACK,
+                Color.BLACK,
+        };
+
+        int [][] states = new int [][]{
+                new int[] { android.R.attr.state_enabled, -android.R.attr.state_checked},
+                new int[] {android.R.attr.state_enabled, android.R.attr.state_checked}};
+        bottomNavigationView.setItemTextColor(new ColorStateList(states, colors));
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
