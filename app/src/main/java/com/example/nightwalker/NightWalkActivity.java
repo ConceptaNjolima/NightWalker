@@ -3,11 +3,13 @@ package com.example.nightwalker;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -34,7 +36,9 @@ public class NightWalkActivity extends FragmentActivity implements OnMapReadyCal
     private GoogleMap mMap;
     private BottomNavigationView bottomNavigationView;
     ParseQuery<PostLocation> query;
+    double latitude, longitude;
     Location nwlocation;
+    TextView tv_NW;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,7 @@ public class NightWalkActivity extends FragmentActivity implements OnMapReadyCal
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
 
+        tv_NW = findViewById(R.id.tv_NightWalk);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -76,11 +81,14 @@ public class NightWalkActivity extends FragmentActivity implements OnMapReadyCal
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
         ParseQuery<PostLocation> query =  ParseQuery.getQuery(PostLocation.class);
+
         query.include(PostLocation.KEY_USERNAME);
         query.include(PostLocation.KEY_TRACKERKEY);
-        query.whereEqualTo("trackerKey", ParseUser.getCurrentUser().getUsername()) ;
+        //query.whereEqualTo("trackerKey", ParseUser.getCurrentUser().getUsername()) ;
+            Log.i(TAG, "queryPosts:Username "+ PostLocation.KEY_USERNAME);
         //while (query.whereEqualTo("trackerKey", ParseUser.getCurrentUser()) != null){
         query.findInBackground(new FindCallback<PostLocation>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void done(List<PostLocation> postLocations, ParseException e) {
                 /*if (e!= null){
@@ -93,16 +101,21 @@ public class NightWalkActivity extends FragmentActivity implements OnMapReadyCal
                     Log.i(TAG, "done: Parse user" +"User: "+ ParseUser.getCurrentUser().getUsername());
                     String user= postLocation.getTrackerKey();
                     String receiver=ParseUser.getCurrentUser().getUsername();
-                    if(receiver == user){
-                        Log.e(TAG, "User: "+ postLocation.getUser()+" Latitude " +postLocation.getLatitude() + " Longitude "+ postLocation.getLongitude(),e);
+                    if (user.equals(receiver)){
+                        Log.i(TAG, "User: "+ postLocation.getUser()+" Latitude " +postLocation.getLatitude() + " Longitude "+ postLocation.getLongitude());
                         Toast.makeText(NightWalkActivity.this, "Found a shared location", Toast.LENGTH_SHORT).show();
-                        nwlocation.setLatitude(postLocation.getLatitude());
-                        nwlocation.setLongitude(postLocation.getLongitude());
-                        return;
-                }
-                    else {
-                        Toast.makeText(NightWalkActivity.this, "No location being shared", Toast.LENGTH_SHORT).show();
+                        tv_NW.setText(postLocation.getUser()+" is sharing location with you.");
+                        latitude =(postLocation.getLatitude());
+                        longitude = (postLocation.getLongitude());
+                        onMapReady(mMap);
+
                     }
+                    return;
+//                    else {
+//
+//                        //Toast.makeText(NightWalkActivity.this, "No location being shared", Toast.LENGTH_SHORT).show();
+//                        continue;
+//                    }
                     }
             }
         });
@@ -129,16 +142,15 @@ public class NightWalkActivity extends FragmentActivity implements OnMapReadyCal
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        if (nwlocation != null){
 
-        LatLng latLng = new LatLng(nwlocation.getLatitude(), nwlocation.getLongitude());
-        Log.e(TAG, "onMapReady: night walker location"+nwlocation.getLatitude()+"  "+nwlocation.getLongitude());
+
+        LatLng latLng = new LatLng(latitude, longitude);
+        Log.e(TAG, "onMapReady: night walker location"+latitude+"  "+longitude);
         MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("My Current Location.");
 
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5));
         googleMap.addMarker(markerOptions);
-    }}
-
+    }
 
 }
