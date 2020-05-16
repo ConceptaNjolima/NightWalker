@@ -73,7 +73,7 @@ public class SocialActivity extends AppCompatActivity {
             super.handleMessage(msg);
             Log.i(TAG, "handleMessage: typing stopped " + startTyping);
             if (time == 0) {
-                setTitle("SocketIO");
+                setTitle("Social");
                 Log.i(TAG, "handleMessage: typing stopped time is " + time);
                 startTyping = false;
                 time = 2;
