@@ -19,7 +19,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/action_NightWalk"
-        android:icon="@android:drawable/ic_menu_myplaces"
+        android:icon="@drawable/ic_directions_walk_black_24dp"
         android:title="NightWalk"
         app:showAsAction="always" />
 </menu>

@@ -28,6 +28,7 @@ import com.parse.livequery.ParseLiveQueryClient;
 import com.parse.livequery.SubscriptionHandling;
 
 import java.util.List;
+import java.util.Objects;
 
 
 public class NightWalkActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -36,7 +37,7 @@ public class NightWalkActivity extends FragmentActivity implements OnMapReadyCal
     private GoogleMap mMap;
     private BottomNavigationView bottomNavigationView;
     ParseQuery<PostLocation> query;
-    double latitude, longitude;
+    private static double latitude, longitude;
     Location nwlocation;
     TextView tv_NW;
 
@@ -101,16 +102,18 @@ public class NightWalkActivity extends FragmentActivity implements OnMapReadyCal
                     Log.i(TAG, "done: Parse user" +"User: "+ ParseUser.getCurrentUser().getUsername());
                     String user= postLocation.getTrackerKey();
                     String receiver=ParseUser.getCurrentUser().getUsername();
-                    if (user.equals(receiver)){
+                   if (receiver.equals(user)){
                         Log.i(TAG, "User: "+ postLocation.getUser()+" Latitude " +postLocation.getLatitude() + " Longitude "+ postLocation.getLongitude());
                         Toast.makeText(NightWalkActivity.this, "Found a shared location", Toast.LENGTH_SHORT).show();
-                        tv_NW.setText(postLocation.getUser()+" is sharing location with you.");
+                        //tv_NW.setText(postLocation.getUser()+" is sharing location with you.");
+                        tv_NW.setText("You are a night walker");
                         latitude =(postLocation.getLatitude());
                         longitude = (postLocation.getLongitude());
+                        Log.i(TAG, "done: saving lat and long"+latitude+longitude);
                         onMapReady(mMap);
 
                     }
-                    return;
+                    //return;
 //                    else {
 //
 //                        //Toast.makeText(NightWalkActivity.this, "No location being shared", Toast.LENGTH_SHORT).show();
@@ -141,9 +144,7 @@ public class NightWalkActivity extends FragmentActivity implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-
-
+        Log.i(TAG, "preparing to plot: lat and long"+latitude+longitude);
         LatLng latLng = new LatLng(latitude, longitude);
         Log.e(TAG, "onMapReady: night walker location"+latitude+"  "+longitude);
         MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("My Current Location.");
