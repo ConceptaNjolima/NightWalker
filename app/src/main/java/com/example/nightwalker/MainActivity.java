@@ -3,6 +3,8 @@ package com.example.nightwalker;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -38,6 +40,16 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageCall=findViewById(R.id.image_call);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setItemIconTintList(null);
+        int[] colors = new int[] {
+                Color.BLACK,
+                Color.BLACK,
+        };
+
+        int [][] states = new int [][]{
+                new int[] { android.R.attr.state_enabled, -android.R.attr.state_checked},
+                new int[] {android.R.attr.state_enabled, android.R.attr.state_checked}};
+        bottomNavigationView.setItemTextColor(new ColorStateList(states, colors));
+
         btnLogout = findViewById(R.id.btnLogout);
         imageCall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,17 +74,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
-                        break;
-                    case R.id.action_location:
-                        Intent a = new Intent(MainActivity.this,MapsActivity.class);
+                        Intent a = new Intent(MainActivity.this,MainActivity.class);
                         startActivity(a);
                         break;
-                    case R.id.action_social:
-                        Intent b = new Intent(MainActivity.this,SocialActivity.class);
+                    case R.id.action_location:
+                        Intent b = new Intent(MainActivity.this,MapsActivity.class);
                         startActivity(b);
                         break;
-                    case R.id.action_NightWalk:
-                        Intent c = new Intent(MainActivity.this,NightWalkActivity.class);
+                    case R.id.action_social:
+                        Intent c = new Intent(MainActivity.this,SocialActivity.class);
                         startActivity(c);
                         break;
                 }

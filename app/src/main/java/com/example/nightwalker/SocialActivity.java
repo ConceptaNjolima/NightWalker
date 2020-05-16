@@ -3,9 +3,11 @@ package com.example.nightwalker;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -27,7 +29,6 @@ import com.parse.ParseUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public class SocialActivity extends AppCompatActivity {
             super.handleMessage(msg);
             Log.i(TAG, "handleMessage: typing stopped " + startTyping);
             if (time == 0) {
-                setTitle("SocketIO");
+                setTitle("Social");
                 Log.i(TAG, "handleMessage: typing stopped time is " + time);
                 startTyping = false;
                 time = 2;
@@ -128,6 +129,16 @@ public class SocialActivity extends AppCompatActivity {
 
         onTypeButtonEnable();
 
+        bottomNavigationView.setItemIconTintList(null);
+        int[] colors = new int[] {
+                Color.BLACK,
+                Color.BLACK,
+        };
+
+        int [][] states = new int [][]{
+                new int[] { android.R.attr.state_enabled, -android.R.attr.state_checked},
+                new int[] {android.R.attr.state_enabled, android.R.attr.state_checked}};
+        bottomNavigationView.setItemTextColor(new ColorStateList(states, colors));
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

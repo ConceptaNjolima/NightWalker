@@ -7,7 +7,8 @@
     android:orientation="vertical"
     android:clipToPadding="false"
     android:focusableInTouchMode="true"
-    tools:context="com.example.nightwalker.SocialActivity">
+    tools:context="com.example.nightwalker.SocialActivity"
+    android:background="@drawable/background">
 
     <ListView
         android:id="@+id/messageListView"
@@ -50,10 +51,12 @@
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/ic_send_black_24dp"/>
 </LinearLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="#5323B1"
         app:menu="@menu/menu_bottom_navigation" />
 </LinearLayout>
