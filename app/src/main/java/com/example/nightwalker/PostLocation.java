@@ -6,7 +6,7 @@ import com.parse.ParseUser;
 
 @ParseClassName("PostLocation")
 public class PostLocation extends ParseObject {
-    public static final String KEY_USERNAME = "user";
+    public static final String KEY_USERNAME = "username";
     public static final String KEY_LATITUDE = "latitude";
     public static final String KEY_LONGITUDE = "longitude";
     public static final String KEY_TRACKERKEY = "trackerKey";
