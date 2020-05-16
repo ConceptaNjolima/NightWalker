@@ -57,6 +57,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#25126E"
+        android:background="#5323B1"
         app:menu="@menu/menu_bottom_navigation" />
 </LinearLayout>
