@@ -3,6 +3,8 @@ package com.example.nightwalker;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -38,6 +40,16 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageCall=findViewById(R.id.image_call);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setItemIconTintList(null);
+        int[] colors = new int[] {
+                Color.BLACK,
+                Color.BLACK,
+        };
+
+        int [][] states = new int [][]{
+                new int[] { android.R.attr.state_enabled, -android.R.attr.state_checked},
+                new int[] {android.R.attr.state_enabled, android.R.attr.state_checked}};
+        bottomNavigationView.setItemTextColor(new ColorStateList(states, colors));
+
         btnLogout = findViewById(R.id.btnLogout);
         imageCall.setOnClickListener(new View.OnClickListener() {
             @Override
