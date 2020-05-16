@@ -15,11 +15,12 @@
         android:layout_width="333dp"
         android:layout_height="333dp"
         android:layout_above="@+id/bottom_navigation"
+        android:layout_alignParentEnd="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="217dp"
-        android:layout_marginBottom="99dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="79dp"
         app:srcCompat="@drawable/ic_local_phone_black_24dp" />
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -37,10 +38,10 @@
         android:layout_alignEnd="@+id/image_call"
         android:layout_alignBottom="@+id/image_call"
 
-        android:layout_marginEnd="-47dp"
-        android:layout_marginBottom="324dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginBottom="314dp"
         android:text="Call 911"
-        android:textColor="#25126E"
+        android:textColor="#FFFFFF"
         android:textSize="50dp" />
 
     <Button
