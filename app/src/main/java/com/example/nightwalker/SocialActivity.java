@@ -2,6 +2,7 @@ package com.example.nightwalker;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
@@ -9,24 +10,26 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-
+import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.github.nkzawa.emitter.Emitter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.ParseUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -38,6 +41,7 @@ public class SocialActivity extends AppCompatActivity {
 
     private EditText textField;
     private ImageButton sendButton;
+    private BottomNavigationView bottomNavigationView;
 
     public static final String TAG = "SocialActivity";
     public static String uniqueId;
@@ -69,7 +73,7 @@ public class SocialActivity extends AppCompatActivity {
             super.handleMessage(msg);
             Log.i(TAG, "handleMessage: typing stopped " + startTyping);
             if (time == 0) {
-                setTitle("SocketIO");
+                setTitle("Social");
                 Log.i(TAG, "handleMessage: typing stopped time is " + time);
                 startTyping = false;
                 time = 2;
@@ -82,6 +86,8 @@ public class SocialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setItemIconTintList(null);
 
         Username = ParseUser.getCurrentUser().getUsername();
 
@@ -124,6 +130,25 @@ public class SocialActivity extends AppCompatActivity {
         messageListView.setAdapter(messageAdapter);
 
         onTypeButtonEnable();
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.action_home:
+                        Intent a = new Intent(SocialActivity.this, MainActivity.class);
+                        startActivity(a);
+                        break;
+                    case R.id.action_location:
+                        Intent b = new Intent(SocialActivity.this, MapsActivity.class);
+                        startActivity(b);
+                        break;
+                    case R.id.action_social:
+                        break;
+                }
+                return true;
+            }
+        });
     }
     @Override
     protected void onSaveInstanceState(Bundle outState) {

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -32,16 +33,27 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.textfield.TextInputEditText;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private static final String TAG = "MAP" ;
+    private static final String TAG = "MapActivity" ;
     Location currentlocation;
     FusedLocationProviderClient fusedLocationProviderClient;
     private static final int REQUEST_CODE = 101;
     private static final int SEND_SMS_REQUEST_CODE = 1;
     private BottomNavigationView bottomNavigationView;
     private Button ShareLtn;
+    private Button InviteNW;
+    private EditText UserNW;
+    private double destination_longitude, destination_latitude;
+    private  PostLocation postLocation;
+    public String userNW;
+
 
 
 
@@ -55,10 +67,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         ShareLtn=findViewById(R.id.btnShareLtn);
-
+        InviteNW = findViewById (R.id.btnInviteNW);
+        UserNW = findViewById(R.id.etuserNW);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         fetchLastLocation();
+
+        postLocation = new PostLocation();
+
+
 /*
         ContentResolver resolver =getContentResolver();
         Cursor cursor= resolver.query(ContactsContract.Contacts.CONTENT_URI,null,
@@ -84,12 +101,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 onSend(v);
+            }
+        });
+        // button to share location to parse server
+        InviteNW.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //METHOD THAT TELLS PARSE TO RECORD LAT AND LONG
+                userNW = UserNW.getText().toString();
+                if (userNW.isEmpty()){
+                    Toast.makeText(MapsActivity.this,"You must input a key", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                LocationThread thread = new LocationThread(userNW);
+                thread.start();
+
 
             }
-
-
-
         });
+
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -124,6 +155,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Toast.makeText(this, "Failed to send message", Toast.LENGTH_SHORT).show();
         }
     }
+
     private void fetchLastLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
@@ -147,7 +179,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
@@ -169,4 +200,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 break;
         }
     }
+
+class LocationThread extends Thread{
+        /**This class makes saving location run in the background. It keeps updating the parse server with the latest location. It uses threads to run in the background.**/
+        int i = 0;
+        String userNw;
+        LocationThread(String userNw){
+            this.userNw = userNw;
+        }
+        public void run(){
+            postLocation.setTrackerKey (userNw);
+            postLocation.setUser(ParseUser.getCurrentUser());
+            while (currentlocation.getLatitude() != destination_latitude || currentlocation.getLongitude() != destination_longitude){
+                fetchLastLocation();
+                postLocation.setLatitude(currentlocation.getLatitude());
+                postLocation.setLongitude(currentlocation.getLongitude());
+                postLocation.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e != null) {
+                            Log.e(TAG, "Error while saving location data", e);
+                            Toast.makeText(MapsActivity.this, "Error while saving location data", Toast.LENGTH_SHORT).show();
+                        }
+                        //Log.i(TAG, "Location saved properly to parse server");
+                        //Toast.makeText(MapsActivity.this, "Location Saved Properly to Parse Server", Toast.LENGTH_SHORT).show();
+                        UserNW.setText("");
+                    }
+                });
+                Log.i(TAG, "LocationThread: " +  i++ );
+                Log.i(TAG, " run: Latitude"+ currentlocation.getLatitude()+"longitude"+currentlocation.getLongitude());
+                try {
+                    Thread.sleep(3000);
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                }
+        }}
 }
+
