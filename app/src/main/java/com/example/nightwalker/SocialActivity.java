@@ -153,6 +153,10 @@ public class SocialActivity extends AppCompatActivity {
                         break;
                     case R.id.action_social:
                         break;
+                    case R.id.action_NightWalk:
+                        Intent c = new Intent(SocialActivity.this,NightWalkActivity.class);
+                        startActivity(c);
+                        break;
                 }
                 return true;
             }

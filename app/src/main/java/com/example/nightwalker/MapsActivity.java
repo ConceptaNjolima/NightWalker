@@ -1,18 +1,20 @@
 package com.example.nightwalker;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
+import android.database.Cursor;
 import android.location.Location;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -140,7 +142,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     case R.id.action_location:
                         break;
                     case R.id.action_social:
-                        Intent c = new Intent(MapsActivity.this,SocialActivity.class);
+                        Intent b = new Intent(MapsActivity.this,SocialActivity.class);
+                        startActivity(b);
+                        break;
+                    case R.id.action_NightWalk:
+                        Intent c = new Intent(MapsActivity.this,NightWalkActivity.class);
                         startActivity(c);
                         break;
                 }
@@ -232,6 +238,7 @@ class LocationThread extends Thread{
                         //Log.i(TAG, "Location saved properly to parse server");
                         //Toast.makeText(MapsActivity.this, "Location Saved Properly to Parse Server", Toast.LENGTH_SHORT).show();
                         UserNW.setText("");
+                        UserNW.setText("Location Being Shared with "+ postLocation.getTrackerKey());
                     }
                 });
                 Log.i(TAG, "LocationThread: " +  i++ );

@@ -24,8 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <!-- Adding google_maps_api. Sama -->
+        <activity android:name=".MainActivity" /> <!-- Adding google_maps_api. Sama -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_api" />
@@ -36,6 +35,9 @@
         <activity
             android:name=".SocialActivity"
             android:label="Social" />
+        <activity
+            android:name=".NightWalkActivity"
+            android:label="NightWalk" />
     </application>
 
 </manifest>

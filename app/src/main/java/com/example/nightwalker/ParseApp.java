@@ -2,6 +2,10 @@ package com.example.nightwalker;
 import android.app.Application;
 import com.parse.Parse;
 import com.parse.ParseObject;
+import com.parse.livequery.ParseLiveQueryClient;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 
 
 public class ParseApp extends Application {    // Creating parse application. Sama
@@ -18,5 +22,15 @@ public class ParseApp extends Application {    // Creating parse application. Sa
                 .applicationId("night-walker-application") // should correspond to APP_ID env variable
                 .clientKey("nightwalkerprotection")  // set explicitly unless clientKey is explicitly configured on Parse server
                 .server("https://night-walker-application.herokuapp.com/parse/").build());
+
+        ParseLiveQueryClient parseLiveQueryClient = null;
+
+        try {
+            parseLiveQueryClient = ParseLiveQueryClient.Factory.getClient(new URI("wss://https://night-walker-application.herokuapp.com/parse/"));
+        } catch (
+                URISyntaxException e) {
+            e.printStackTrace();
+
+        }
     }
 }
