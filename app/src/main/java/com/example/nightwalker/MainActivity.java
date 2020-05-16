@@ -76,20 +76,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_home:
                         Intent a = new Intent(MainActivity.this,MainActivity.class);
                         startActivity(a);
-                        Toast toast = Toast.makeText(getApplicationContext(),"home",Toast. LENGTH_SHORT);
-                        toast.show();
                         break;
                     case R.id.action_location:
                         Intent b = new Intent(MainActivity.this,MapsActivity.class);
                         startActivity(b);
-                        Toast toast_location = Toast.makeText(getApplicationContext(),"location",Toast. LENGTH_SHORT);
-                        toast_location.show();
                         break;
                     case R.id.action_social:
                         Intent c = new Intent(MainActivity.this,SocialActivity.class);
                         startActivity(c);
-                        Toast toast_social = Toast.makeText(getApplicationContext(),"social",Toast. LENGTH_SHORT);
-                        toast_social.show();
                         break;
                 }
                 return true;
