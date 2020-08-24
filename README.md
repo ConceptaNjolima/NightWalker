@@ -14,7 +14,7 @@ Group Project - README Template
 The Nightwalker app is a security app that enables users to call 911 emergency line, and communicate your friends and family. It allows security officials and family members to get your location.
 
 # Video Walkthrough
-<img src= 'https://github.com/The-NightWalkers/NightWalker/blob/master/demo%20(1).gif'style="vertical-align:middle" width="300" title='Sending Location to Police via SMS'/>
+<img src= 'https://github.com/The-NightWalkers/NightWalker/blob/master/demo%20(1).gif' style="vertical-align:middle" width="300" title='Nightwalker: Final Version'/>
 
 
 ### App Evaluation
