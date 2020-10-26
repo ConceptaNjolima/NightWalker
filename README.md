@@ -35,7 +35,12 @@ The Nightwalker app is a security app that enables users to call 911 emergency l
 -  [X] Signup and Login 
 -  [X] Emergency calls to 911
 -  [X] Track Location
--  [ ] Invite a friend as a Night Walker
+-  [X] Invite a friend as a Night Walker
+
+
+## Initial Design
+This is the walkthrough of the initial design of the Night Walker app.
+<img src='https://github.com/The-NightWalkers/NightWalker/blob/master/demo%20(1).gif' style="vertical-align:middle" width="300" title='initialdesign'/>
  
 
 **Optional Nice-to-have Stories**
