@@ -40,7 +40,7 @@ The Nightwalker app is a security app that enables users to call 911 emergency l
 
 ## Initial Design
 This is the walkthrough of the initial design of the Night Walker app.
-<img src='https://github.com/The-NightWalkers/NightWalker/blob/master/demo%20(1).gif' style="vertical-align:middle" width="300" title='initialdesign'/>
+<img src= 'https://github.com/The-NightWalkers/NightWalker/blob/master/demo%20(1).gif' style="vertical-align:middle" width="400" title='Nightwalker: Final Version'/>
  
 
 **Optional Nice-to-have Stories**
